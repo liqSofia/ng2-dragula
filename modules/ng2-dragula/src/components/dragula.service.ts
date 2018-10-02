@@ -165,8 +165,8 @@ export class DragulaService {
       let sourceModel = drake.models[drake.containers.indexOf(source)];
       sourceModel = sourceModel.slice(0); // clone it
       const item = sourceModel.splice(dragIndex, 1)[0];
-      // console.log('REMOVE');
-      // console.log(sourceModel);
+      console.log('REMOVE');
+      console.log(sourceModel);
       this.dispatch$.next({
         event: EventTypes.RemoveModel,
         name,
@@ -187,16 +187,18 @@ export class DragulaService {
       dropIndex = this.domIndexOf(dropElm, target);
       let sourceModel = drake.models[drake.containers.indexOf(source)];
       let targetModel = drake.models[drake.containers.indexOf(target)];
-      // console.log('DROP');
-      // console.log(sourceModel);
+       console.log('DROP');
+       console.log(sourceModel);
       let item: any;
       if (target === source) {
+        console.log(sourceModel);
         sourceModel = sourceModel.slice(0)
         item = sourceModel.splice(dragIndex, 1)[0];
         sourceModel.splice(dropIndex, 0, item);
         // this was true before we cloned and updated sourceModel,
         // but targetModel still has the old value
         targetModel = sourceModel;
+        console.log(targetModel);
       } else {
         let isCopying = dragElm !== dropElm;
         item = sourceModel[dragIndex];
